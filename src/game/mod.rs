@@ -2,16 +2,19 @@ use bevy::{ prelude::*, render::camera::ScalingMode, state::commands, window::Pr
 mod ui;
 mod level;
 
+pub const MY_BROWN: Color = Color::srgb(91.0 / 255.0, 75.0 / 255.0, 73.0 / 255.0);
 pub const MY_ORANGE: Color = Color::srgb(222.0 / 255.0, 112.0 / 255.0, 40.0 / 255.0);
 pub const DARK_MODE_BG_COLOR: Color = Color::srgb(45.0 / 255.0, 47.0 / 255.0, 47.0 / 255.0);
-
+pub const LIGHT_MODE_BG_COLOR: Color = Color::rgb(200.0 / 255.0, 200.0 / 255.0, 205.0 / 255.0);
 pub struct GamePlugin;
 
 impl bevy::app::Plugin for GamePlugin {
     fn build(&self, app: &mut App) {
         // 初始化游戏相关
-        app.add_plugins(ui::Plugin); // ui控件
-        app.add_plugins(level::Plugin);
+        app.add_plugins((
+            level::Plugin,
+            ui::Plugin, // ui控件
+        )); 
 
         app.add_systems(Startup, spawn_camera); // 添加相机
     }

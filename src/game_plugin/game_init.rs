@@ -5,7 +5,7 @@ pub struct GameInitPlugin;
 
 impl Plugin for GameInitPlugin {
     fn build(&self, app: &mut App) {
-        app.insert_resource(ClearColor(game::DARK_MODE_BG_COLOR));
+        app.insert_resource(ClearColor(game::LIGHT_MODE_BG_COLOR));
         app.add_plugins(DefaultPlugins.set(
             WindowPlugin {
                 primary_window: Some(
