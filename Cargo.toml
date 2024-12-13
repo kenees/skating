@@ -1,0 +1,11 @@
+[package]
+name = "bevy_game_try"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bevy = "0.15.0"
+
+[profile.dev]
+opt-level = 0
+incremental = true
