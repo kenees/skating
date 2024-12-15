@@ -5,9 +5,11 @@ pub struct Plugin;
 impl bevy::app::Plugin for Plugin {
     fn build(&self, app: &mut App) {
         app
-            // .init_resource::<Level>()
+            .init_resource::<Level>()
             .init_resource::<Levels>()
-            // .init_resource::<CurrentLevelIndex>()
+            .init_resource::<TotalBreadCount>()
+            .init_resource::<BreadCount>()
+            .init_resource::<CurrentLevelIndex>()
             .add_systems(Update, (print_level, update_level));
     }
 }
@@ -36,19 +38,19 @@ impl Default for Levels {
 #[derive(Resource, Default)]
 pub struct Level(pub Vec<Vec<char>>);
 
-// #[derive(Resource)]
-// pub struct CurrentLevelIndex(pub usize);
+#[derive(Resource)]
+pub struct CurrentLevelIndex(pub usize);
 
-// impl Default for CurrentLevelIndex {
-//     fn default() -> Self {
-//         CurrentLevelIndex(1)
-//     }
-// }
+impl Default for CurrentLevelIndex {
+    fn default() -> Self {
+        CurrentLevelIndex(1)
+    }
+}
 
 #[allow(dead_code)]
 pub fn print_level(level: Res<Level>) {
     // todo!()
-    info!("BreadCount: {}", 11);
+    // info!("BreadCount: {}", 11);
 }
 
 fn spawn_level(
@@ -61,7 +63,7 @@ fn spawn_level(
 }
 
 pub fn update_level() {
-    print!("update level...");
+    // print!("update level...");
 }
 
 // #[derive(Error, Debug)]
@@ -83,4 +85,15 @@ pub fn update_level() {
 //             Level(level_data)
 //         })
 //         .ok_or_else(|| GameError::FailToLoadLevels.into())
+// }
+
+#[derive(Resource, Default)]
+pub struct TotalBreadCount(pub i32);
+
+#[derive(Resource, Default)]
+pub struct BreadCount(pub i32);
+// impl Default for BreadCount {
+//     fn default() -> Self {
+//         BreadCount(0)
+//     }
 // }
